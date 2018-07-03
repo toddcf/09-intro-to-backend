@@ -155,3 +155,22 @@ app.get("/r/:subredditName", function(req, res) {
 });
 ```
 
+### Render
+
+You can pass an entire file into the response by using `render`, which is a method attached to `res`. Like so:
+
+`res.render( "index.html" );`
+
+NOTE: You don't send standard HTML files back using Express, you send dynamic HTML files called "templates."
+
+You can also send EJS files, which stand for "Embedded JavaScript," like so:
+
+`res.render( "index.ejs" );`
+
+These files must be stored in a directory called `views`. (This is the directory name Express is going to look for. But you first have to install `npm install ejs --save`.)
+
+Embedded JavaScript files allow you to "embed" "JavaScript" variables, loops, etc. into HTML. You do this by wrapping it inside the following type of brackets:
+
+`<%= %>`
+
+Whatever goes between those two brackets gets treated like JavaScript. Note that you don't want to clutter your code with tons and tons of JavaScript, so later we'll learn how to handle this.
