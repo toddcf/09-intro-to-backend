@@ -174,3 +174,20 @@ Embedded JavaScript files allow you to "embed" "JavaScript" variables, loops, et
 `<%= %>`
 
 Whatever goes between those two brackets gets treated like JavaScript. Note that you don't want to clutter your code with tons and tons of JavaScript, so later we'll learn how to handle this.
+
+You can store something in a variable and pass it into the render from your app.js file like this:
+
+```
+app.get( "/fallinlovewith/:thing", function( req, res ) {
+    var thing = req.params.thing;
+    res.render( "love.ejs", {thingVar: thing} );
+});
+```
+
+Then in your ejs file:
+
+`<h1>You fell in love with: <%= thingVar.toUpperCase() %> </h1>`
+
+You are actually storing it in a variable twice: Once when you pull it from `req.params`, and again when you render it, because you are storing the `thing` variable in `thingVar`.
+
+Note that `toUpperCase()` is not required. It was just used for aesthetics in this case.
