@@ -191,3 +191,50 @@ Then in your ejs file:
 You are actually storing it in a variable twice: Once when you pull it from `req.params`, and again when you render it, because you are storing the `thing` variable in `thingVar`.
 
 Note that `toUpperCase()` is not required. It was just used for aesthetics in this case.
+
+In your ejs file, you can even put JavaScript if statements; you just have to wrap each *line* of JavaScript code inside brackets *without the equals signs*, like this:
+
+```
+<% if(thingVar.toLowerCase() === "rusty") { %>
+  <p>Good choice! Rusty is the best! </p>
+<% } %>
+```
+
+You need to remove the equal signs because there are three different types of tags in EJS:
+
+1. `<%= %>`
+2. `<% %>`
+3. `<%- %>`
+
+`<%= %>` renders its contents to the HTML. For example, `<%= 5 + 5 %>` would display `10` to the HTML. Sometimes you don't want this.
+
+`<% %>` is for when you are doing logic (such as if statements and loops), where you don't want to display the brackets, parentheses, etc. It just runs the code without displaying it in the HTML.
+
+### Telling Express Which Directories to Load
+
+In your app.js (or starter) file:
+
+`app.use(express.static("public"));`
+
+This tells Express to load anything in the `public` directory (such as your CSS files).
+
+### Telling Express You Will Always Be Using EJS Files
+
+If you don't want to keep writing `.ejs` after every file name like this:
+
+`res.render( "home.ejs" );`
+
+You can include the following code at the top of your app.js file, which will let Express know to always expect the file to be an EJS file:
+
+`app.set("view engine", "ejs");`
+
+### Partials
+
+Partials are templates that you can include inside of other templates.
+
+### Paths
+
+Note that your paths work as follows when linking to a CSS file, for example:
+
+`href="app.css"` will look for the file in the directory you're in.
+`href="/app.css"` (adding the slash) will look for the file in the *root* directory.
