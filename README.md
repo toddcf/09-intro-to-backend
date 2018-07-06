@@ -238,3 +238,31 @@ Note that your paths work as follows when linking to a CSS file, for example:
 
 `href="app.css"` will look for the file in the directory you're in.
 `href="/app.css"` (adding the slash) will look for the file in the *root* directory.
+
+### Post
+
+Whereas `get` is only for retrieving information, `post` is for when the user adds information.
+
+Similar syntax:
+
+```
+app.post( '/addfriend', function( req, res ) {
+  res.send( 'You have reached the POST route.' );
+});
+```
+
+### Body Parser
+
+`req.body` will be undefined unless Body Parser is installed.
+
+Body Parser is sometimes bundled with Express, but this is different with each version. You may need to install it manually: 
+
+`npm install body-parser --save`
+
+You'll also need to require it in Express:
+
+`var bodyParser = require('body-parser');`
+
+You'll also need to "use" the bodyParser variable you just created, like so:
+
+`app.use( bodyParser.urlencoded( { extended: true } ) );`
